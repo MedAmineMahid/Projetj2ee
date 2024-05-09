@@ -84,7 +84,7 @@ public class DashboardController {
         model.addAttribute("rendezvousList", rendezVousService.getAllRendezVous());
         model.addAttribute("client", new Client()); // For the form to add or edit clients
         model.addAttribute("rendezvous", new RendezVous()); // For the form to add rendezvous
-        return "Admin/dashboard"; // Note the path here matches the folder structure under /templates/
+        return "Admin/dashboard"; // Note the path here matches the folder structure under /templates,/
     }
 
 
