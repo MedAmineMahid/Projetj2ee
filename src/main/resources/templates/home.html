@@ -83,6 +83,39 @@ and is wrapped around the whole page content, except for the footer in this exam
                 </ul>
             </div>
         </div>
+        <!-- Adhesions Section -->
+        <div class="w3-col l4">
+            <div class="w3-container w3-white w3-margin">
+                <h2>Adhesions</h2>
+                <p>Liste des adhésions</p>
+                <table border="1">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Iterate over the list of adhesions and display each adhesion -->
+                    <tr th:each="adhesion : ${adhesions}">
+                        <td th:text="${adhesion.id}"></td>
+                        <td th:text="${adhesion.type}"></td>
+                        <td th:text="${adhesion.duree}"></td>
+                       <!-- <td th:text="${adhesion.client}"></td>-->
+                        <td>
+                            <!-- Add links for edit and delete actions -->
+                            <a th:href="@{/editAdhesion/{id}(id=${adhesion.id})}">Edit</a>
+                            <a th:href="@{/deleteAdhesion/{id}(id=${adhesion.id})}"
+                               onclick="return confirm('Are you sure you want to delete this adhesion?')">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <!-- Services Section -->
         <div class="w3-col l4">
