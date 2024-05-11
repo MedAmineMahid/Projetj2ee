@@ -35,7 +35,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 
     <!-- Image header -->
     <header class="w3-display-container w3-wide" id="home">
-        <img class="w3-image" src="/photos/gym2.jpg" alt="Gym Header"width="1600" height="1060">
+        <img class="w3-image" src="/photos/gym2.jpg" alt="Gym Header" width="1600" height="1060">
 
         <div class="w3-display-middle w3-padding-large">
             <h1 class="w3-text-white">Welcome to My Gym</h1>
@@ -65,52 +65,44 @@ and is wrapped around the whole page content, except for the footer in this exam
             </div>
         </div>
 
-        <!-- Trainers Section -->
         <div class="w3-col l4">
             <div class="w3-container w3-white w3-margin">
-                <h2>Our Trainers</h2>
-                <p>Meet our experienced trainers ready to guide you.</p>
-                <!-- Example of using EntraîneurPersonnel entity -->
+                <h2>Trainers</h2>
                 <ul class="w3-ul">
-                    <li class="w3-padding-16">
-                        <span class="w3-large">John Doe</span><br>
-                        <span>Specialty: Weightlifting</span>
-                    </li>
-                    <li class="w3-padding-16">
-                        <span class="w3-large">Jane Smith</span><br>
-                        <span>Specialty: Yoga & Pilates</span>
+                    <!-- Iterate over the list of trainers and display each trainer -->
+                    <li th:each="entraineur : ${entraineures}" class="w3-padding-16">
+                        <span class="w3-large" th:text="${entraineur.firstName + ' ' + entraineur.lastName}"></span><br>
+                        <span th:text="'ID: ' + ${entraineur.id}"></span><br>
+                        <span th:text="'Bio: ' + ${entraineur.bio}"></span>
+                        <!-- You can add more details here if needed -->
                     </li>
                 </ul>
             </div>
         </div>
+
+        </section>
+
 
         <!-- Services Section -->
         <div class="w3-col l4">
             <div class="w3-container w3-white w3-margin">
-                <h2>Services</h2>
-                <p>Relax and rejuvenate with our spa services.</p>
-                <!-- Example of using ServiceSpa entity -->
+                <h2>Adhesions</h2>
                 <ul class="w3-ul">
-                    <li class="w3-padding-16">
-                        <span class="w3-large">Massage Therapy</span><br>
-                        <span>Description: Full body massage</span><br>
-                        <span>Duration: 60 minutes</span>
-                    </li>
-                    <li class="w3-padding-16">
-                        <span class="w3-large">Sauna Sessions</span><br>
-                        <span>Description: Relaxing sauna experience</span><br>
-                        <span>Duration: 30 minutes</span>
+                    <!-- Iterate over the list of adhesions and display each adhesion -->
+                    <li th:each="adhesion : ${adhesions}" class="w3-padding-16">
+                        <span class="w3-large" th:text="${adhesion.type}"></span><br>
+                        <span th:text="'ID: ' + ${adhesion.id}"></span><br>
+                        <span th:text="'Duration: ' + ${adhesion.duree}"></span>
+                        <!-- You can add more details here if needed -->
+                        <div>
+                            <!-- Add links for edit and delete actions -->
+                             </div>
                     </li>
                 </ul>
             </div>
         </div>
 
-        <!-- More sections can be added -->
-
-        <!-- END GRID -->
-    </div>
-
-    <!-- END w3-content -->
+        <!-- END w3-content -->
 </div>
 
 <!-- Footer -->
