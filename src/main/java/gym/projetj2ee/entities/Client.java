@@ -15,13 +15,9 @@ import java.util.List;
 @NoArgsConstructor
 
 public class Client extends User {
-    /*@Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;*/
-    private String telephone;
+    private boolean paid;
+
+
     @OneToMany(mappedBy = "client",fetch=FetchType.LAZY)
     private List<Adhesion> adhesions = new ArrayList<>();
     @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)

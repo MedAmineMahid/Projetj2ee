@@ -13,13 +13,13 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+
 public class Paiement {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Double montant;
-    private Date paymentDate;
-    private String paymentMethod;
+
     @ManyToOne
     private Client client;
 }

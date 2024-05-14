@@ -74,6 +74,7 @@ and is wrapped around the whole page content, except for the footer in this exam
                         <span class="w3-large" th:text="${entraineur.firstName + ' ' + entraineur.lastName}"></span><br>
                         <span th:text="'ID: ' + ${entraineur.id}"></span><br>
                         <span th:text="'Bio: ' + ${entraineur.bio}"></span>
+
                         <!-- You can add more details here if needed -->
                     </li>
                 </ul>
@@ -93,7 +94,8 @@ and is wrapped around the whole page content, except for the footer in this exam
                         <span class="w3-large" th:text="${adhesion.type}"></span><br>
                         <span th:text="'ID: ' + ${adhesion.id}"></span><br>
                         <span th:text="'Duration: ' + ${adhesion.duree}"></span>
-                        <!-- You can add more details here if needed -->
+                        <span th:text="'Prix: ' + ${adhesion.prix}"></span>
+
                         <div>
                             <!-- Add links for edit and delete actions -->
                              </div>
@@ -110,6 +112,6 @@ and is wrapped around the whole page content, except for the footer in this exam
     <a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
     <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
-
+</div>
 </body>
 </html>

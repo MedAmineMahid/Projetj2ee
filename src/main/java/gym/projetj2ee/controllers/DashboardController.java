@@ -11,8 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalTime;
-import java.time.ZonedDateTime;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -36,11 +39,12 @@ public class DashboardController {
         return "redirect:/Admin/dashboard"; // Redirect to dashboard after saving
     }
 
-
-    @RequestMapping("/client/edit/{userid}")
-    public String editClient(@PathVariable String userid, Client client) {
-        clientService.updateClient(client);
-        return "Admin/dashboard"; // adjust path if needed
+    @PostMapping("/client/changeState") // Add new mapping for changing client state to paid
+    public String changeClientState(@RequestParam String userid) {
+        Client client = clientService.getClientById(userid);
+        client.setPaid(true); // Set the client's paid status to true
+        clientService.updateClient(client); // Update the client
+        return "redirect:/Admin/dashboard"; // Redirect to dashboard after changing state
     }
 
     @RequestMapping("/client/delete/{userid}")
@@ -49,23 +53,25 @@ public class DashboardController {
         return "redirect:/Admin/dashboard"; // redirect to main dashboard after deletion
     }
     @PostMapping("/rendezvous/save")
-    public String saveRendezVous(@ModelAttribute @Valid RendezVous rendezVous, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "error"; // Return error page or handle validation errors appropriately
+    public String saveRendezVous(@RequestParam("clientId") String clientId,
+                                 @RequestParam("time") String time,
+                                 @RequestParam("date") String date,
+                                 Model model) {
+        Client client = clientService.getClientById(clientId);
+        if (client == null) {
+            model.addAttribute("error", "Client not found");
+            return "error";
         }
 
-        // Validate and convert time string to ZonedDateTime
-        String timeString = rendezVous.getTime().toString(); // Assuming getTime() returns ZonedDateTime directly
-        LocalTime localTime = LocalTime.parse(timeString);
-        ZonedDateTime time = ZonedDateTime.now().with(localTime);
-
+        RendezVous rendezVous = new RendezVous();
+        rendezVous.setClient(client);
+        rendezVous.setDate(date);
         rendezVous.setTime(time);
 
         rendezVousService.saveRendezVous(rendezVous);
-        return "redirect:/Admin/dashboard"; // Redirect to dashboard after saving
+
+        return "redirect:/Admin/dashboard";
     }
-
-
     @RequestMapping("/rendezVous/edit/{id}")
     public String editRendezVous(@PathVariable Long id, RendezVous rendezVous) {
         rendezVousService.updateRendezVous(rendezVous);
@@ -80,13 +86,16 @@ public class DashboardController {
 
     @GetMapping("")
     public String showDashboard(Model model) {
-        model.addAttribute("clients", clientService.getAllClients());
+        List<Client> clients = clientService.getAllClients();
+
+        long paidCount = clients.stream().filter(Client::isPaid).count();
+        long unpaidCount = clients.size() - paidCount;
+        model.addAttribute("clients", clients);
+        model.addAttribute("paidCount", paidCount);
+        model.addAttribute("unpaidCount", unpaidCount);
         model.addAttribute("rendezvousList", rendezVousService.getAllRendezVous());
         model.addAttribute("client", new Client()); // For the form to add or edit clients
         model.addAttribute("rendezvous", new RendezVous()); // For the form to add rendezvous
         return "Admin/dashboard"; // Note the path here matches the folder structure under /templates,/
     }
-
-
-
 }
