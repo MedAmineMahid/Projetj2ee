@@ -107,7 +107,7 @@
         <tbody>
         <tr th:each="client : ${clients}">
             <td th:text="${client.userid}"></td>
-            <td th:text="${client.name}"></td>
+            <td th:text="${client.username}"></td>
             <td th:text="${client.email}"></td>
             <td>
                 <input type="checkbox" th:checked="${client.paid}" th:disabled="${client.paid}" onclick="return false;">
