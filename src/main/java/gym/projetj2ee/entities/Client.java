@@ -16,6 +16,7 @@ import java.util.List;
 
 public class Client extends User {
     private boolean paid;
+    private String name;
 
 
     @OneToMany(mappedBy = "client",fetch=FetchType.LAZY)

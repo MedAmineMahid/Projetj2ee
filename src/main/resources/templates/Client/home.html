@@ -148,12 +148,11 @@
             </div>
         </div>
     </section>
-
-    <!-- Contact Form Section -->
+<<!-- Contact Form Section -->
     <section id="contact" class="w3-container w3-padding-32">
         <h2 class="w3-center">Contact Us</h2>
         <div class="w3-card w3-padding">
-            <form action="/submit_form" method="POST">
+            <form id="contactForm" action="/submit_form" method="POST">
                 <div class="w3-row-padding">
                     <div class="w3-col l12">
                         <label for="name">Name:</label>
@@ -177,9 +176,25 @@
                         <button type="submit" class="w3-button w3-black w3-hover-white">Submit</button>
                     </div>
                 </div>
+                <div id="messageContainer" class="w3-panel w3-green w3-display-container w3-hide">
+                    <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
+                    <p>Your message has been sent!</p>
+                </div>
             </form>
         </div>
     </section>
+
+    <!-- JavaScript to display message -->
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            document.getElementById("messageContainer").classList.remove("w3-hide"); // Display message container
+            setTimeout(function() {
+                document.getElementById("messageContainer").classList.add("w3-hide"); // Hide message container after 5 seconds
+            }, 5000);
+            this.reset(); // Reset form
+        });
+    </script>
 
 </div>
 
