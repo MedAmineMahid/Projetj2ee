@@ -24,6 +24,13 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     private String userid;
+
+    public User(String userid, String username, String password) {
+        this.userid = userid;
+        this.username = username;
+        this.password = password;
+    }
+
     private String username;
     private String email;
     private String password;

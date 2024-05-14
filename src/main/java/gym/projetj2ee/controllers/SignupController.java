@@ -47,6 +47,6 @@ public class SignupController {
         userRepository.save(user);
 
         model.addAttribute("successMessage", "User registration successful!");
-        return "redirect:/client/home";
+        return "redirect:/login";
     }
 }

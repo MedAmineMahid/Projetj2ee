@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AdhesionRepository extends JpaRepository<Adhesion,Long> {
+    boolean existsByType(String type);
 }

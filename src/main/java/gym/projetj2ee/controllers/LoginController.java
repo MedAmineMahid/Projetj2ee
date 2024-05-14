@@ -23,6 +23,6 @@ public class LoginController {
     @PostMapping("/login") // Assuming form submits to /login (adjust based on your needs)
     public String handleLogin(String username, String password,@ModelAttribute Model model) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        return "redirect:Admin/dashboard";
+        return "redirect:/Admin/dashboard";
     }
 }

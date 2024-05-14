@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gym Management Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <style>
+        body {
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+            color: #555;
+        }
+        input[type="text"], input[type="email"], input[type="date"], input[type="time"], select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .card-title {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .card-body {
+            padding: 0;
+        }
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Gym Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/Admin/dashboard}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/Admin/addClient}">Add client</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/Admin/rendezvous}">Rendez-vous</a>
+                    </li>
+
+                </ul>
+            </div>
+            </div>
+    </nav>
+</head>
+<body>
+<section>
+
+    <div class="card">
+        <h2 class="card-title">Rendezvous</h2>
+
+        <form th:action="@{/rendezvous/save}" method="post">
+            <div class="row mb-3">
+            <div class="col-md-4">
+
+            <label for="clientId">Select Client:</label>
+            <select  id="clientId" name="clientId" required style="width: 100%; height: 40px;">
+                <option th:each="client : ${clients}" th:value="${client.userid}" th:text="${client.username}"></option>
+            </select>
+            </div>
+                <div class="col-md-4">
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required style=" height: 40px;" />
+                </div>
+                <div class="col-md-4">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required style="height: 40px;" />
+                </div>
+                <div class="col-md-4">
+            <button type="submit">Add Rendezvous</button>
+
+            </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Client</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="rendezvous : ${rendezvousList}">
+                    <td th:text="${rendezvous.id}"></td>
+                    <td th:text="${rendezvous.date}"></td>
+                    <td th:text="${rendezvous.time}"></td>
+                    <td th:text="${rendezvous.client.username}"></td>
+                    <td>
+                        <form th:action="@{/rendezvous/delete/{id}(id=${rendezvous.id})}" method="post" id="deleteRendezvousForm">
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <button type="button" class="btn btn-danger" onclick="confirmDeleteRendezvous()">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+<script>
+    function confirmDeleteRendezvous() {
+        if (confirm("Are you sure you want to delete this rendezvous?")) {
+            document.getElementById('deleteRendezvousForm').submit();
+        }
+    }
+</script>
+</body>
+</html>

@@ -10,4 +10,6 @@ public interface UserRepository extends JpaRepository<User, String> {
     User findByUsername(String username);
     User save(User user);
     void delete(User user);
+
+    boolean existsByUsername(String adminUsername);
 }

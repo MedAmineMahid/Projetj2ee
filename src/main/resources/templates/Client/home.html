@@ -1,117 +1,192 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Gym Website</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Gym Website</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Open+Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        h1,h2,h3,h4,h5,h6 {font-family: "Oswald",serif}
-        body {font-family: "Open Sans"}
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Oswald', sans-serif; }
+        .w3-bar { letter-spacing: 4px; }
+        .w3-button:hover { background-color: #ddd; color: black; }
+        .hero-image {
+            background-image: url('/photos/gym2.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-text {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+        .membership-plan, .trainer, .service {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 16px;
+            margin-bottom: 20px;
+            background: #fff;
+        }
+        .footer {
+            background: #333;
+            color: #fff;
+            padding: 32px;
+            text-align: center;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .flex-item {
+            flex: 1;
+            margin: 0 10px;
+        }
     </style>
 </head>
 <body class="w3-light-grey">
 
-<!-- Navigation bar with social media icons -->
+<!-- Navigation Bar -->
 <div class="w3-bar w3-black w3-hide-small">
-    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-facebook-official"></i></a>
-    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-instagram"></i></a>
-    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-twitter"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-right"><i class="fa fa-search"></i></a>
+    <a href="#membership" class="w3-bar-item w3-button">Memberships</a>
+    <a href="#trainers" class="w3-bar-item w3-button">Trainers</a>
+    <a href="#activities" class="w3-bar-item w3-button">Activities</a>
+    <a href="#contact" class="w3-bar-item w3-button">Contact Us</a>
 </div>
 
-<!-- w3-content defines a container for fixed size centered content,
-and is wrapped around the whole page content, except for the footer in this example -->
-<div class="w3-content" style="max-width:1600px">
+<!-- Hero Section -->
+<header class="hero-image">
+    <div class="hero-text">
+        <h1>Welcome to My Gym</h1>
+        <h2>Fitness & Wellness</h2>
+        <a href="#membership" class="w3-button w3-white w3-padding-large w3-opacity w3-hover-opacity-off">Join Us</a>
+    </div>
+</header>
 
-    <!-- Header -->
-    <header class="w3-container w3-center w3-padding-48 w3-white">
-        <h1 class="w3-xxxlarge"><b>My Gym</b></h1>
-        <h6>Welcome to our fitness center</h6>
-    </header>
+<!-- Main Content -->
+<div class="w3-content" style="max-width:1200px; margin-top:40px;">
 
-    <!-- Image header -->
-    <header class="w3-display-container w3-wide" id="home">
-        <img class="w3-image" src="/photos/gym2.jpg" alt="Gym Header" width="1600" height="1060">
-
-        <div class="w3-display-middle w3-padding-large">
-            <h1 class="w3-text-white">Welcome to My Gym</h1>
-            <h1 class="w3-jumbo w3-text-white w3-hide-small"><b>Fitness & Wellness</b></h1>
-            <h6><a href="#membership" class="w3-button w3-white w3-padding-large w3-large w3-opacity w3-hover-opacity-off">Join Us</a></h6>
-        </div>
-    </header>
-
-    <div class="w3-row w3-padding w3-border">
-
-        <div class="w3-col l4">
-            <div class="w3-container w3-white w3-margin">
-                <h2>Memberships</h2>
-                <p>Choose the perfect membership plan for your fitness goals.</p>
-                <ul class="w3-ul">
-                    <li class="w3-padding-16">
-                        <span class="w3-large">Basic Membership</span><br>
-                        <span>Description: Access to gym equipment</span><br>
-                        <span>Price: $50/month</span>
-                    </li>
-                    <li class="w3-padding-16">
-                        <span class="w3-large">Premium Membership</span><br>
-                        <span>Description: Includes personal training sessions</span><br>
-                        <span>Price: $100/month</span>
-                    </li>
-                </ul>
+    <!-- Memberships Section -->
+    <section id="membership" class="w3-row-padding w3-padding-32">
+        <h2 class="w3-center">Memberships</h2>
+        <div class="w3-col l6">
+            <div class="membership-plan">
+                <h3>Basic Membership</h3>
+                <p>Access to gym equipment</p>
+                <p>$50/month</p>
             </div>
         </div>
-
-        <div class="w3-col l4">
-            <div class="w3-container w3-white w3-margin">
-                <h2>Trainers</h2>
-                <ul class="w3-ul">
-                    <!-- Iterate over the list of trainers and display each trainer -->
-                    <li th:each="entraineur : ${entraineures}" class="w3-padding-16">
-                        <span class="w3-large" th:text="${entraineur.firstName + ' ' + entraineur.lastName}"></span><br>
-                        <span th:text="'ID: ' + ${entraineur.id}"></span><br>
-                        <span th:text="'Bio: ' + ${entraineur.bio}"></span>
-
-                        <!-- You can add more details here if needed -->
-                    </li>
-                </ul>
+        <div class="w3-col l6">
+            <div class="membership-plan">
+                <h3>Premium Membership</h3>
+                <p>Includes personal training sessions</p>
+                <p>$100/month</p>
             </div>
         </div>
+    </section>
 
+    <!-- Trainers and Adhesions Section -->
+    <div class="flex-container" id="trainers">
+        <!-- Trainers Section -->
+        <section class="flex-item">
+            <h2 class="w3-center">Trainers</h2>
+            <div class="trainer w3-white w3-margin" th:each="entraineur : ${entraineures}">
+                <span class="w3-large" th:text="${entraineur.firstName + ' ' + entraineur.lastName}">John Doe</span><br>
+                <span th:text="'ID: ' + ${entraineur.id}">ID: 123</span><br>
+                <span th:text="'Bio: ' + ${entraineur.bio}">Bio: Experienced fitness trainer.</span>
+            </div>
         </section>
 
+        <!-- Adhesions Section -->
+        <section class="flex-item">
+            <h2 class="w3-center">Adhesions</h2>
+            <div class="service w3-white w3-margin" th:each="adhesion : ${adhesions}">
+                <span class="w3-large" th:text="${adhesion.type}">Standard Adhesion</span><br>
+                <span th:text="'ID: ' + ${adhesion.id}">ID: 456</span><br>
+                <span th:text="'Duration: ' + ${adhesion.duree}">Duration: 12 months</span><br>
+                <span th:text="'Prix: ' + ${adhesion.prix}">Prix: $200</span>
+            </div>
+        </section>
+    </div>
 
-        <!-- Services Section -->
-        <div class="w3-col l4">
-            <div class="w3-container w3-white w3-margin">
-                <h2>Adhesions</h2>
-                <ul class="w3-ul">
-                    <!-- Iterate over the list of adhesions and display each adhesion -->
-                    <li th:each="adhesion : ${adhesions}" class="w3-padding-16">
-                        <span class="w3-large" th:text="${adhesion.type}"></span><br>
-                        <span th:text="'ID: ' + ${adhesion.id}"></span><br>
-                        <span th:text="'Duration: ' + ${adhesion.duree}"></span>
-                        <span th:text="'Prix: ' + ${adhesion.prix}"></span>
-
-                        <div>
-                            <!-- Add links for edit and delete actions -->
-                             </div>
-                    </li>
-                </ul>
+    <!-- Activities Section -->
+    <section id="activities" class="w3-row-padding w3-padding-32">
+        <h2 class="w3-center">Activities</h2>
+        <div class="w3-col l4 m6">
+            <div class="w3-card w3-padding">
+                <i class="fa fa-dumbbell fa-3x"></i>
+                <h3>Strength Training</h3>
+                <p>Build muscle and improve strength</p>
             </div>
         </div>
+        <div class="w3-col l4 m6">
+            <div class="w3-card w3-padding">
+                <i class="fa fa-heartbeat fa-3x"></i>
+                <h3>Cardio Workouts</h3>
+                <p>Improve cardiovascular health</p>
+            </div>
+        </div>
+        <div class="w3-col l4 m6">
+            <div class="w3-card w3-padding">
+                <i class="fa fa-bicycle fa-3x"></i>
+                <h3>Cycling Classes</h3>
+                <p>Fun and effective cycling workouts</p>
+            </div>
+        </div>
+    </section>
 
-        <!-- END w3-content -->
+    <!-- Contact Form Section -->
+    <section id="contact" class="w3-container w3-padding-32">
+        <h2 class="w3-center">Contact Us</h2>
+        <div class="w3-card w3-padding">
+            <form action="/submit_form" method="POST">
+                <div class="w3-row-padding">
+                    <div class="w3-col l12">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" class="w3-input" required>
+                    </div>
+                </div>
+                <div class="w3-row-padding">
+                    <div class="w3-col l12">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" class="w3-input" required>
+                    </div>
+                </div>
+                <div class="w3-row-padding">
+                    <div class="w3-col l12">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" class="w3-input" required></textarea>
+                    </div>
+                </div>
+                <div class="w3-row-padding">
+                    <div class="w3-col l12">
+                        <button type="submit" class="w3-button w3-black w3-hover-white">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
 </div>
 
 <!-- Footer -->
-<footer class="w3-container w3-dark-grey" style="padding:32px">
+<footer class="footer">
     <a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
-</div>
+
 </body>
 </html>
