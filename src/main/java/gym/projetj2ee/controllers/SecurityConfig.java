@@ -30,8 +30,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((authorize) ->
                         authorize
-                                .requestMatchers("/Client/home").permitAll() // Allow public access to signup
-
+                                .requestMatchers("/Client/home").permitAll()
                                 .anyRequest().authenticated()
                 ).formLogin(
                         form -> form

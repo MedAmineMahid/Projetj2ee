@@ -15,12 +15,12 @@ public class LoginController {
 
     private AuthenticationManager authenticationManager;
 
-    @GetMapping("/login") // Assuming GET request shows the login form (adjust based on your needs)
+    @GetMapping("/login")
     public String login() {
-        return "se_connecter"; // Your custom login page view name
+        return "se_connecter";
     }
 
-    @PostMapping("/login") // Assuming form submits to /login (adjust based on your needs)
+    @PostMapping("/login")
     public String handleLogin(String username, String password,@ModelAttribute Model model) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         return "redirect:/Admin/dashboard";

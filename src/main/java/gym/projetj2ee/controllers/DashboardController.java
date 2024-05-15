@@ -24,33 +24,30 @@ public class DashboardController {
 
     private final ClientService clientService;
     private final RendezVousService rendezVousService;
-    private final RendezVousRepository rendezVousRepository; // Inject the repository
-
+    private final RendezVousRepository rendezVousRepository;
     public DashboardController(ClientService clientService, RendezVousService rendezVousService, RendezVousRepository rendezVousRepository) {
         this.clientService = clientService;
         this.rendezVousService = rendezVousService;
-        this.rendezVousRepository = rendezVousRepository; // Initialize the repository
+        this.rendezVousRepository = rendezVousRepository;
     }
     @PostMapping("/client/save")
     public String saveClient(@ModelAttribute Client client, Model model) {
         client.setUserid((UUID.randomUUID().toString()));
 
         clientService.saveClient(client);
-        return "redirect:/Admin/dashboard"; // Redirect to dashboard after saving
-    }
+        return "redirect:/Admin/dashboard";     }
 
-    @PostMapping("/client/changeState") // Add new mapping for changing client state to paid
+    @PostMapping("/client/changeState")
     public String changeClientState(@RequestParam String userid) {
         Client client = clientService.getClientById(userid);
-        client.setPaid(true); // Set the client's paid status to true
-        clientService.updateClient(client); // Update the client
-        return "redirect:/Admin/dashboard"; // Redirect to dashboard after changing state
-    }
+        client.setPaid(true);
+        clientService.updateClient(client);
+        return "redirect:/Admin/dashboard";  }
 
     @RequestMapping("/client/delete/{userid}")
     public String deleteClient(@PathVariable String userid, Client client) {
         clientService.deleteClientById(userid);
-        return "redirect:/Admin/dashboard"; // redirect to main dashboard after deletion
+        return "redirect:/Admin/dashboard";
     }
     @PostMapping("/rendezvous/save")
     public String saveRendezVous(@RequestParam("clientId") String clientId,
@@ -94,8 +91,7 @@ public class DashboardController {
         model.addAttribute("paidCount", paidCount);
         model.addAttribute("unpaidCount", unpaidCount);
         model.addAttribute("rendezvousList", rendezVousService.getAllRendezVous());
-        model.addAttribute("client", new Client()); // For the form to add or edit clients
-        model.addAttribute("rendezvous", new RendezVous()); // For the form to add rendezvous
-        return "Admin/dashboard"; // Note the path here matches the folder structure under /templates,/
-    }
+        model.addAttribute("client", new Client());
+        model.addAttribute("rendezvous", new RendezVous());
+        return "Admin/dashboard"; }
 }

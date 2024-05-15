@@ -26,24 +26,23 @@ public class SignupController {
 
     @GetMapping("/signup")
     public String showSignupForm(Model model) {
-        model.addAttribute("newUser", new User()); // Form binding object
+        model.addAttribute("newUser", new User());
         return "signup";
     }
 
     @PostMapping("/signup")
     public String handleSignup(@Valid @ModelAttribute("newUser") User userData, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            // Validation failed, return signup form with errors
+
             return "signup";
         }
 
-        User user = userData; // No conversion needed
+        User user = userData;
         user.setUserid(UUID.randomUUID().toString());
 
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); // Assuming you have this configured
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        // Save the user using the repository
         userRepository.save(user);
 
         model.addAttribute("successMessage", "User registration successful!");

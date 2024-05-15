@@ -56,6 +56,20 @@
             flex: 1;
             margin: 0 10px;
         }
+        .feature {
+            display: flex;
+            justify-content: space-between;
+        }
+        .feature img {
+            width: 100%;
+            height: auto;
+        }
+        .feature-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 16px;
+        }
     </style>
 </head>
 <body class="w3-light-grey">
@@ -80,24 +94,26 @@
 <!-- Main Content -->
 <div class="w3-content" style="max-width:1200px; margin-top:40px;">
 
-    <!-- Memberships Section -->
-    <section id="membership" class="w3-row-padding w3-padding-32">
-        <h2 class="w3-center">Memberships</h2>
-        <div class="w3-col l6">
-            <div class="membership-plan">
-                <h3>Basic Membership</h3>
-                <p>Access to gym equipment</p>
-                <p>$50/month</p>
+
+    <!-- Health Checkup Feature Section -->
+    <<!-- Health Checkup Feature Section -->
+    <section id="health-checkup" class="w3-row-padding w3-padding-32">
+        <h2 class="w3-center">Health Checkup</h2>
+        <div class="w3-row">
+            <div class="w3-col l6 m6 s12">
+                <div class="membership-plan">
+                    <img src="/photos/nurse.jpg" alt="Health Checkup" style="width: 100%; max-width: 300px;">
+                </div>
             </div>
-        </div>
-        <div class="w3-col l6">
-            <div class="membership-plan">
-                <h3>Premium Membership</h3>
-                <p>Includes personal training sessions</p>
-                <p>$100/month</p>
+            <div class="w3-col l6 m6 s12">
+                <div class="membership-plan feature-text">
+                    <h3>Comprehensive Health Checkup</h3>
+                    <p>Ensure you are in the best shape with our detailed health assessments. Our health checkup includes a full-body analysis.</p>
+                </div>
             </div>
         </div>
     </section>
+
 
     <!-- Trainers and Adhesions Section -->
     <div class="flex-container" id="trainers">
@@ -148,7 +164,8 @@
             </div>
         </div>
     </section>
-<<!-- Contact Form Section -->
+
+    <!-- Contact Form Section -->
     <section id="contact" class="w3-container w3-padding-32">
         <h2 class="w3-center">Contact Us</h2>
         <div class="w3-card w3-padding">
@@ -176,32 +193,31 @@
                         <button type="submit" class="w3-button w3-black w3-hover-white">Submit</button>
                     </div>
                 </div>
-                <div id="messageContainer" class="w3-panel w3-green w3-display-container w3-hide">
-                    <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
-                    <p>Your message has been sent!</p>
-                </div>
+                <!-- Message Container -->
+                <div id="messageContainer" class="w3-panel"></div>
             </form>
         </div>
     </section>
-
-    <!-- JavaScript to display message -->
-    <script>
-        document.getElementById("contactForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent form submission
-            document.getElementById("messageContainer").classList.remove("w3-hide"); // Display message container
-            setTimeout(function() {
-                document.getElementById("messageContainer").classList.add("w3-hide"); // Hide message container after 5 seconds
-            }, 5000);
-            this.reset(); // Reset form
-        });
-    </script>
 
 </div>
 
 <!-- Footer -->
 <footer class="footer">
-    <a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+    <p>&copy; 2024 My Gym. All rights reserved.</p>
+    <div>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+    </div>
 </footer>
+
+<script>
+    // Simulating form submission response
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var messageContainer = document.getElementById('messageContainer');
+        messageContainer.innerHTML = '<p>Thank you for your message. We will get back to you soon.</p>';
+        messageContainer.className = 'w3-panel w3-green';
+    });
+</script>
 
 </body>
 </html>

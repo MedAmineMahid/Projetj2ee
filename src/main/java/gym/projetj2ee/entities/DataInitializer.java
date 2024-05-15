@@ -19,7 +19,6 @@ public class DataInitializer {
                                             AdhesionRepository adhesionRepository,
                                             UserRepository userRepository) {
         return args -> {
-            // Initialize EntraineurPersonnel objects
             List<EntraineurPersonnel> entraineurs = Arrays.asList(
                     new EntraineurPersonnel(null, "John", "Doe", "1234567890", "Experienced fitness trainer", "General Fitness", null, null),
                     new EntraineurPersonnel(null, "Jane", "Smith", "0987654321", "Specialist in weight loss", "Weight Loss", null, null),
@@ -32,7 +31,6 @@ public class DataInitializer {
                 }
             }
 
-            // Initialize Adhesion objects
             List<Adhesion> adhesions = Arrays.asList(
                     new Adhesion(null, "Basic Membership", 30, 150.0, null),
                     new Adhesion(null, "Premium Membership", 300, 200.0, null)
@@ -44,7 +42,6 @@ public class DataInitializer {
                 }
             }
 
-            // Initialize Admin user
             String adminUsername = "admin";
             String adminPassword = "123";
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); // Assuming you have this configured

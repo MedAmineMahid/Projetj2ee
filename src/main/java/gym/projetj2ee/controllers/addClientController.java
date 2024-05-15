@@ -25,6 +25,6 @@ public class addClientController {
         client.setUserid((UUID.randomUUID().toString()));
 
         clientService.saveClient(client);
-        return "redirect:/Admin/dashboard"; // Redirect to dashboard after saving
+        return "redirect:/Admin/dashboard";
     }
 }
