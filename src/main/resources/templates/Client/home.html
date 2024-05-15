@@ -82,7 +82,7 @@
     <a href="#contact" class="w3-bar-item w3-button">Contact Us</a>
 </div>
 
-<!-- Hero Section -->
+
 <header class="hero-image">
     <div class="hero-text">
         <h1>Welcome to My Gym</h1>
@@ -91,12 +91,10 @@
     </div>
 </header>
 
-<!-- Main Content -->
 <div class="w3-content" style="max-width:1200px; margin-top:40px;">
 
 
-    <!-- Health Checkup Feature Section -->
-    <<!-- Health Checkup Feature Section -->
+
     <section id="health-checkup" class="w3-row-padding w3-padding-32">
         <h2 class="w3-center">Health Checkup</h2>
         <div class="w3-row">
@@ -115,9 +113,7 @@
     </section>
 
 
-    <!-- Trainers and Adhesions Section -->
     <div class="flex-container" id="trainers">
-        <!-- Trainers Section -->
         <section class="flex-item">
             <h2 class="w3-center">Trainers</h2>
             <div class="trainer w3-white w3-margin" th:each="entraineur : ${entraineures}">
@@ -127,7 +123,6 @@
             </div>
         </section>
 
-        <!-- Adhesions Section -->
         <section class="flex-item">
             <h2 class="w3-center">Adhesions</h2>
             <div class="service w3-white w3-margin" th:each="adhesion : ${adhesions}">
@@ -139,7 +134,6 @@
         </section>
     </div>
 
-    <!-- Activities Section -->
     <section id="activities" class="w3-row-padding w3-padding-32">
         <h2 class="w3-center">Activities</h2>
         <div class="w3-col l4 m6">
@@ -165,7 +159,6 @@
         </div>
     </section>
 
-    <!-- Contact Form Section -->
     <section id="contact" class="w3-container w3-padding-32">
         <h2 class="w3-center">Contact Us</h2>
         <div class="w3-card w3-padding">
@@ -193,7 +186,6 @@
                         <button type="submit" class="w3-button w3-black w3-hover-white">Submit</button>
                     </div>
                 </div>
-                <!-- Message Container -->
                 <div id="messageContainer" class="w3-panel"></div>
             </form>
         </div>
@@ -201,7 +193,6 @@
 
 </div>
 
-<!-- Footer -->
 <footer class="footer">
     <p>&copy; 2024 My Gym. All rights reserved.</p>
     <div>
@@ -210,7 +201,6 @@
 </footer>
 
 <script>
-    // Simulating form submission response
     document.getElementById('contactForm').addEventListener('submit', function(event) {
         event.preventDefault();
         var messageContainer = document.getElementById('messageContainer');
