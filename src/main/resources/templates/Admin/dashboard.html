@@ -110,7 +110,7 @@
         <tbody>
         <tr th:each="client : ${clients}">
             <td th:text="${client.userid}"></td>
-            <td th:text="${client.username}"></td>
+            <td th:text="${client.name}"></td>
             <td th:text="${client.email}"></td>
             <td>
                 <input type="checkbox" th:checked="${client.paid}" th:disabled="${client.paid}" onclick="return false;">
@@ -120,11 +120,9 @@
                     <input type="hidden" name="userid" th:value="${client.userid}" />
                     <button type="submit" class="btn btn-success" th:if="${not client.paid}">Mark as Paid</button>
                 </form>
-
-                <form th:action="@{/Admin/dashboard/client/delete/{userid}(userid=${client.userid})}" method="post" style="display: inline;" id="deleteForm">
+                <form th:action="@{/Admin/dashboard/client/delete/{userid}(userid=${client.userid})}" method="post" style="display: inline;" id="deleteForm" onsubmit="return confirm('Are you sure you want to delete?')">
                     <input type="hidden" name="userid" th:value="${client.userid}" />
-
-                    <button type="button" class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
 
 
@@ -182,13 +180,7 @@
             }
         });
     </script>
-    <script>
-        function confirmDelete() {
-            if (confirm("Are you sure you want to delete this client?")) {
-                document.getElementById('deleteForm').submit();
-            }
-        }
-    </script>
+
 </section>
 
 

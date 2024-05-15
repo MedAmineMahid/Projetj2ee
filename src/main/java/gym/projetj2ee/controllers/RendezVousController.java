@@ -58,11 +58,7 @@ public class RendezVousController {
 
         return "redirect:/Admin/rendezvous";
     }
-    @RequestMapping("/rendezVous/edit/{id}")
-    public String editRendezVous(@PathVariable Long id, RendezVous rendezVous) {
-        rendezVousService.updateRendezVous(rendezVous);
-        return "Admin/rendezvous"; // adjust path if needed
-    }
+
 
     @RequestMapping("/rendezvous/delete/{id}")
     public String deleteRendezVous(@PathVariable Long id, RendezVous rendezVous) {

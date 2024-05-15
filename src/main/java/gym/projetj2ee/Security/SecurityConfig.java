@@ -1,4 +1,4 @@
-package gym.projetj2ee.controllers;
+package gym.projetj2ee.Security;
 
 
 
@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -30,7 +29,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((authorize) ->
                         authorize
-                                .requestMatchers("/Client/home").permitAll()
+                                .requestMatchers("/Client/home","/Client/**").permitAll()
                                 .anyRequest().authenticated()
                 ).formLogin(
                         form -> form

@@ -49,31 +49,7 @@ public class DashboardController {
         clientService.deleteClientById(userid);
         return "redirect:/Admin/dashboard";
     }
-    @PostMapping("/rendezvous/save")
-    public String saveRendezVous(@RequestParam("clientId") String clientId,
-                                 @RequestParam("time") String time,
-                                 @RequestParam("date") String date,
-                                 Model model) {
-        Client client = clientService.getClientById(clientId);
-        if (client == null) {
-            model.addAttribute("error", "Client not found");
-            return "error";
-        }
 
-        RendezVous rendezVous = new RendezVous();
-        rendezVous.setClient(client);
-        rendezVous.setDate(date);
-        rendezVous.setTime(time);
-
-        rendezVousService.saveRendezVous(rendezVous);
-
-        return "redirect:/Admin/dashboard";
-    }
-    @RequestMapping("/rendezVous/edit/{id}")
-    public String editRendezVous(@PathVariable Long id, RendezVous rendezVous) {
-        rendezVousService.updateRendezVous(rendezVous);
-        return "Admin/dashboard"; // adjust path if needed
-    }
 
     @RequestMapping("/rendezVous/delete/{id}")
     public String deleteRendezVous(@PathVariable Long id, RendezVous rendezVous) {
